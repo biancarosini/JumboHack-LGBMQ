@@ -1,17 +1,4 @@
 import React, {useState} from 'react';  // Import React to use JSX
-function Background() {
-  return (
-    <div style={{ 
-      backgroundImage: `url("Home.jpg")`,
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      height: '100vh' 
-    }}>
-      {/* Content */}
-    </div>
-  );
-}
-
 function StartButton() {
   const [showForm, setShowForm] = useState(false);
   function handleClick() {
@@ -59,9 +46,9 @@ function Form(){
 
 function App() {
   return (
-    <div>
+    <div style={{backgroundImage: `url("Home.jpg")` 
+    }} >
       <h1>Hello, React!</h1>
-      <Background/>
       <StartButton/>
     </div>
   );
