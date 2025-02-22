@@ -1,22 +1,13 @@
 import React, {useState} from 'react';  // Import React to use JSX
-function DynamicBackground() {
-  const [background, setBackground] = useState('Home.jpg');
-
-  const changeBackground = () => {
-    setBackground(background === 'Home.jpg');
-  };
-
+function Background() {
   return (
-    <div
-      style={{
-        backgroundImage: `url(${background})`,
-        backgroundSize: 'cover',
-        height: '100vh',
-        cursor: 'pointer',
-      }}
-      onClick={changeBackground}
-    >
-      <button onClick={changeBackground}>Change Background</button>
+    <div style={{ 
+      backgroundImage: `url("Home.jpg")`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      height: '100vh' 
+    }}>
+      {/* Content */}
     </div>
   );
 }
@@ -69,8 +60,8 @@ function Form(){
 function App() {
   return (
     <div>
-      <DynamicBackground/>
       <h1>Hello, React!</h1>
+      <Background/>
       <StartButton/>
     </div>
   );
