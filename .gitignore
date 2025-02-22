@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+
+# Build output (Vite)
+dist/
+
+# Logs
+*.log
+
+# OS files (MacOS, Windows)
+.DS_Store
+Thumbs.db
+
+# Environment files (if you're using them)
+.env
+.env.local
+.env.*.local
+
+# Vite cache
+.vite/
+
+# IDE or editor specific files (for example, VSCode)
+.vscode/
+
+# npm package-lock or yarn lock files (if using npm, but prefer to avoid committing lock files)
+package-lock.json
+yarn.lock
+
+# Optional: You may also want to ignore the .idea directory if you're using JetBrains IDEs (like WebStorm)
+.idea/
+
+#CHATGPT WROTE THIS
