@@ -69,6 +69,7 @@ function Form(){
 function App() {
   return (
     <div>
+      <DynamicBackground/>
       <h1>Hello, React!</h1>
       <StartButton/>
     </div>
