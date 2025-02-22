@@ -1,5 +1,15 @@
 import React from 'react';  // Import React to use JSX
+function StartButton() {
+  function handleClick() {
+    <Form/>
+  }
 
+  return (
+    <button onClick={handleClick}>
+      Eat Me
+    </button>
+  );
+}
 function Form(){
   return(
     <form action="" method="get" class="form-rabbit">
@@ -35,7 +45,6 @@ function App() {
   return (
     <div>
       <h1>Hello, React!</h1>
-      <Form/>
     </div>
   );
 }
