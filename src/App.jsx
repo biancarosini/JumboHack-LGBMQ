@@ -46,7 +46,7 @@ function Form(){
 
 function App() {
   return (
-    <div style={{backgroundImage: `url("Home.jpg")`, backgroundSize: 'contain', width:'100vw',height:'100vh',backgroundRepeat: 'no-repeat'}} >
+    <div style={{backgroundImage: `url("Home.jpg")`, backgroundSize: 'contain', width:'100vw',height:'100vh',backgroundPosition: "center",backgroundRepeat: 'no-repeat'}} >
       <h1>Hello, React!</h1>
       <StartButton/>
     </div>
