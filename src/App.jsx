@@ -1,4 +1,26 @@
 import React, {useState} from 'react';  // Import React to use JSX
+function DynamicBackground() {
+  const [background, setBackground] = useState('Home.jpg');
+
+  const changeBackground = () => {
+    setBackground(background === 'Home.jpg');
+  };
+
+  return (
+    <div
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: 'cover',
+        height: '100vh',
+        cursor: 'pointer',
+      }}
+      onClick={changeBackground}
+    >
+      <button onClick={changeBackground}>Change Background</button>
+    </div>
+  );
+}
+
 function StartButton() {
   const [showForm, setShowForm] = useState(false);
   function handleClick() {
