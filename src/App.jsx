@@ -47,7 +47,11 @@ function Form(){
 
 function App() {
   return (
+<<<<<<< HEAD
     <div style={{backgroundImage: `url("Home.jpg")`, backgroundSize: 'contain', width:'100vw',height:'100vh',backgroundRepeat: 'no-repeat'}} >
+=======
+    <div style={{backgroundImage: `url("Home.jpg")`, backgroundSize: 'contain', width:'100vw',height:'100vh',backgroundPosition: "center",backgroundRepeat: 'no-repeat'}} >
+>>>>>>> 0a84f269e4444068c6b9b43d32302b998105dfa6
       <h1>Hello, React!</h1>
       <StartButton/>
       <CountdownClock/>
