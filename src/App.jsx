@@ -1,4 +1,5 @@
 import React, {useState} from 'react';  // Import React to use JSX
+import CountdownClock from './CountdownClock'; 
 function StartButton() {
   const [showForm, setShowForm] = useState(false);
   function handleClick() {
@@ -49,8 +50,9 @@ function App() {
     <div>
       <h1>Hello, React!</h1>
       <StartButton/>
+      <CountdownClock/>
     </div>
   );
-}
+};
 
 export default App; 
