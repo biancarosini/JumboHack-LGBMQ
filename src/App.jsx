@@ -1,13 +1,17 @@
 import React from 'react';  // Import React to use JSX
 function StartButton() {
+  coonst [showForm, setShowForm] = useState(false);
   function handleClick() {
-    <Form/>
+    setShowForm(!showForm);
   }
-
+<Form/>
   return (
+    <div> 
     <button onClick={handleClick}>
-      Eat Me
+    {showForm ? 'Hide Form': 'Show Form'}
     </button>
+    {showForm && <Form />} {/* Conditionally render the form */}
+    </div>
   );
 }
 function Form(){
