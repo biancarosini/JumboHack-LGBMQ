@@ -1,4 +1,3 @@
-================================================================================
 GOaling Down The Rabbit Hole
 ================================================================================
 Created by: LGBMQ (Lily Mosisa, Bianca Rosini, Marina Escandell Tapias, Quinn Hinde-Schuster)
