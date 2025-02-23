@@ -46,7 +46,7 @@ function RoseButton({ onClick, hideButton }) {
         >
           <img 
             src={isClicked ? "RoseRed.png" : "RoseWhite.png"} // Toggle images
-            style={{ width: "250px", height: "250px" }} 
+            style={{ width: "166px", height: "171px" }} 
             alt="Rose Button"
           />
         </button>
