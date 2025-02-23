@@ -73,9 +73,9 @@ function FormComponent({ onSubmit, hideForm }) {
     console.log("Submitted Data:", formData);
 
     const timeInSeconds = parseInt(formData.time, 10) * 60;
-    
+
     hideForm(false); // Hide the form on submit
-    onSubmit(timeInSeconds); // Pass time to App
+    onSubmit(timeInSeconds, formData.mess, formData.pnumber); // Pass data to App
   }
 
   return (
@@ -113,13 +113,19 @@ function App() {
   const [countdownTime, setCountdownTime] = useState(60); // Default to 60 seconds
   const [showRoseButton, setShowRoseButton] = useState(false);
   const [showElements, setShowElements] = useState(true); // Controls visibility of all elements
+  const [message, setMessage] = useState(""); // Store message but don't display it yet
+  const [recipient, setRecipient] = useState(""); // Store recipient but don't display it yet
 
-  function changeBackground(timeInSeconds) {
+  function changeBackground(timeInSeconds, mess, pnumber) {
     setBackground("Tunnel.jpg"); // Change background on form submission
     setShowCountdownClock(true);
     setShowStartButton(false); // Hide Start Button on submit
     setCountdownTime(timeInSeconds); // Set countdown time
     setShowRoseButton(true); // Show Rose Button on submit
+
+    // Store message details but don't display them yet
+    setMessage(mess);
+    setRecipient(pnumber);
   }
 
   function handleRoseClick() {
@@ -145,12 +151,18 @@ function App() {
     }}>
       {showElements && (
         <>
-          <h1>PROJECT TITLE!</h1>
+          <h1 style={{ color: "black" }}>GOaling Down the Rabbit Hole!</h1>
+
 
           {showStartButton && <StartButton onSubmit={changeBackground} hideButton={!showStartButton} />}
           {showCountdownClock && <CountdownClock initialTime={countdownTime} onTimerEnd={handleCountdownEnd} />}
           {showRoseButton && <RoseButton onClick={handleRoseClick} hideButton={!showRoseButton} />}
         </>
+      )}
+
+      {/* SHOW MESSAGE ONLY WHEN beheading.png IS ACTIVE */}
+      {background === "beheading.png" && (
+        <h2>{message} is being sent to {recipient}</h2>
       )}
     </div>
   );
