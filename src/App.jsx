@@ -16,16 +16,41 @@ function StartButton({ onSubmit, hideButton }) {
         onClick={handleClick} 
         style={{ border: "none", background: "none", padding: 0, cursor: "pointer" }}
       >
-          {showFormComponent}
           <img 
-    src="EatMe.png" 
-    alt="Click me" 
-    style={{ width: "100px", height: "100px" }} 
-  />
-
+            src="EatMe.png" 
+            alt="Click me" 
+            style={{ width: "100px", height: "100px" }} 
+          />
         </button>
       )}
       {showFormComponent && <FormComponent onSubmit={onSubmit} hideForm={setShowFormComponent} />}
+    </div>
+  );
+}
+
+// GOAL BUTTON (Rose Button)
+function RoseButton({ onClick, hideButton }) { 
+  const [isClicked, setIsClicked] = useState(false);
+
+  function handleClick() {
+    setIsClicked(true);
+    if (onClick) onClick(); // Trigger background change in App
+  }
+
+  return (
+    <div>
+      {!hideButton && (
+        <button 
+          onClick={handleClick} 
+          style={{ border: "none", background: "none", padding: 0, cursor: "pointer" }}
+        >
+          <img 
+            src={isClicked ? "RoseRed.png" : "RoseWhite.png"} // Toggle images
+            style={{ width: "100px", height: "100px" }} 
+            alt="Rose Button"
+          />
+        </button>
+      )}
     </div>
   );
 }
@@ -47,7 +72,6 @@ function FormComponent({ onSubmit, hideForm }) {
     event.preventDefault();
     console.log("Submitted Data:", formData);
 
-    // Convert time (minutes) to seconds
     const timeInSeconds = parseInt(formData.time, 10) * 60;
     
     hideForm(false); // Hide the form on submit
@@ -63,7 +87,7 @@ function FormComponent({ onSubmit, hideForm }) {
 
       <div>
         <label>Enter time limit **minutes:</label>
-        <input type="number" name="time" value={formData.time} onChange={handleChange} required />
+        <input type="double" name="time" value={formData.time} onChange={handleChange} required />
       </div>
 
       <div>
@@ -81,18 +105,33 @@ function FormComponent({ onSubmit, hideForm }) {
   );
 }
 
-
+// MAIN APP COMPONENT
 function App() {
   const [background, setBackground] = useState("Home.jpg");
   const [showCountdownClock, setShowCountdownClock] = useState(false);
   const [showStartButton, setShowStartButton] = useState(true);
   const [countdownTime, setCountdownTime] = useState(60); // Default to 60 seconds
+  const [showRoseButton, setShowRoseButton] = useState(false);
+  const [showElements, setShowElements] = useState(true); // Controls visibility of all elements
 
   function changeBackground(timeInSeconds) {
     setBackground("Tunnel.jpg"); // Change background on form submission
     setShowCountdownClock(true);
     setShowStartButton(false); // Hide Start Button on submit
     setCountdownTime(timeInSeconds); // Set countdown time
+    setShowRoseButton(true); // Show Rose Button on submit
+  }
+
+  function handleRoseClick() {
+    setBackground("teaParty.png"); // Change background when rose is clicked
+    setShowElements(false); // Hide all elements
+  }
+
+  function handleCountdownEnd() {
+    if (showRoseButton) { // If Rose Button was shown but never clicked
+      setBackground("beheading.png");
+      setShowElements(false); // Hide all elements
+    }
   }
 
   return (
@@ -104,14 +143,17 @@ function App() {
       backgroundPosition: "center",
       backgroundRepeat: 'no-repeat'
     }}>
-      <h1>PROJECT TITLE!</h1>
+      {showElements && (
+        <>
+          <h1>PROJECT TITLE!</h1>
 
-      {showStartButton && <StartButton onSubmit={changeBackground} hideButton={!showStartButton} />}
-
-      {showCountdownClock && <CountdownClock initialTime={countdownTime} />}
+          {showStartButton && <StartButton onSubmit={changeBackground} hideButton={!showStartButton} />}
+          {showCountdownClock && <CountdownClock initialTime={countdownTime} onTimerEnd={handleCountdownEnd} />}
+          {showRoseButton && <RoseButton onClick={handleRoseClick} hideButton={!showRoseButton} />}
+        </>
+      )}
     </div>
   );
 }
-
 
 export default App;
