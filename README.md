@@ -1,5 +1,5 @@
 # JumboHack-LGBMQ
-The Project: Our team LGBMQ wanted to create an Alice in Wonderland theme goal tracker that blended childlike wonder (the bunny completing the goal and falling into a tea party or the bunny not completeing the goal and meeting the Queen of Hearts) with adult reality (sending a text message at failure as motivation to get things done). 
+The Project: Our team LGBMQ wanted to create "GOaling Down the Rabbit Hole," an Alice in Wonderland theme goal tracker, that blended childlike wonder (the bunny completing the goal and falling into a tea party or the bunny not completeing the goal and meeting the Queen of Hearts) with adult reality (sending a text message at failure as motivation to get things done). 
 
 as  and 2 to 3 sentences describing the goal of your project. What were your goals, and what did you accomplish over the weekend?
 

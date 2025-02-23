@@ -64,8 +64,8 @@ const CountdownClock = ({ initialTime, onTimerEnd }) => {
                     top: `${bunnyPosition}vh`, // Moves down with time
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    width: '300px',
-                    height: '300px',
+                    width: '168px',
+                    height: '368px',
                 }}
             />
             <h2>{timeLeft} seconds remaining</h2>
