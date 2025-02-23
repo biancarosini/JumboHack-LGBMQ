@@ -87,7 +87,7 @@ function FormComponent({ onSubmit, hideForm }) {
 
       <div>
         <label>Enter time limit **minutes:</label>
-        <input type="double" name="time" value={formData.time} onChange={handleChange} required />
+        <input type="number" name="time" value={formData.time} onChange={handleChange} required />
       </div>
 
       <div>
