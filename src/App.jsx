@@ -19,7 +19,7 @@ function StartButton({ onSubmit, hideButton }) {
           <img 
             src="EatMe.png" 
             alt="Click me" 
-            style={{ width: "100px", height: "100px" }} 
+            style={{ width: "200px", height: "200px" }} 
           />
         </button>
       )}
@@ -46,7 +46,7 @@ function RoseButton({ onClick, hideButton }) {
         >
           <img 
             src={isClicked ? "RoseRed.png" : "RoseWhite.png"} // Toggle images
-            style={{ width: "100px", height: "100px" }} 
+            style={{ width: "250px", height: "250px" }} 
             alt="Rose Button"
           />
         </button>
