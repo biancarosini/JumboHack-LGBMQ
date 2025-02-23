@@ -31,6 +31,7 @@ function StartButton({ onSubmit, hideButton }) {
 // GOAL BUTTON (Rose Button)
 function RoseButton({ onClick, hideButton }) { 
   const [isClicked, setIsClicked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   function handleClick() {
     setIsClicked(true);
@@ -42,11 +43,13 @@ function RoseButton({ onClick, hideButton }) {
       {!hideButton && (
         <button 
           onClick={handleClick} 
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           style={{ border: "none", background: "none", padding: 0, cursor: "pointer" }}
         >
           <img 
-            src={isClicked ? "RoseRed.png" : "RoseWhite.png"} // Toggle images
-            style={{ width: "166px", height: "171px" }} 
+            src={isClicked ? "RoseRed.png" : (isHovered ? "RoseRed.png" : "RoseWhite.png")} // Toggle images on hover & click
+            style={{ width: "250px", height: "250px" }} 
             alt="Rose Button"
           />
         </button>
