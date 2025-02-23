@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CountdownClock from './CountdownClock';
 
 // HOME PAGE BUTTON 
-function StartButton({ onSubmit, hideButton }) {
+function StartButton({ onSubmit, hideButton }) { 
   const [showFormComponent, setShowFormComponent] = useState(false);
 
   function handleClick() {
@@ -12,8 +12,17 @@ function StartButton({ onSubmit, hideButton }) {
   return (
     <div>
       {!hideButton && (
-        <button onClick={handleClick}>
-          {showFormComponent ? 'Hide Form' : 'Show Form'}
+        <button 
+        onClick={handleClick} 
+        style={{ border: "none", background: "none", padding: 0, cursor: "pointer" }}
+      >
+          {showFormComponent}
+          <img 
+    src="EatMe.png" 
+    alt="Click me" 
+    style={{ width: "100px", height: "100px" }} 
+  />
+
         </button>
       )}
       {showFormComponent && <FormComponent onSubmit={onSubmit} hideForm={setShowFormComponent} />}
@@ -25,7 +34,7 @@ function StartButton({ onSubmit, hideButton }) {
 function FormComponent({ onSubmit, hideForm }) {
   const [formData, setFormData] = useState({
     goal: "",
-    deadline: "",
+    time: "",
     pnumber: "",
     mess: "",
   });
@@ -37,39 +46,53 @@ function FormComponent({ onSubmit, hideForm }) {
   function handleSubmit(event) {
     event.preventDefault();
     console.log("Submitted Data:", formData);
+
+    // Convert time (minutes) to seconds
+    const timeInSeconds = parseInt(formData.time, 10) * 60;
+    
     hideForm(false); // Hide the form on submit
-    onSubmit(); // Change background & show clock
+    onSubmit(timeInSeconds); // Pass time to App
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Enter your goal:</label>
-      <input type="text" name="goal" value={formData.goal} onChange={handleChange} required />
+      <div>
+        <label>Enter your goal:</label>
+        <input type="text" name="goal" value={formData.goal} onChange={handleChange} required />
+      </div>
 
-      <label>Enter your deadline:</label>
-      <input type="time" name="deadline" value={formData.deadline} onChange={handleChange} required />
+      <div>
+        <label>Enter time limit **minutes:</label>
+        <input type="number" name="time" value={formData.time} onChange={handleChange} required />
+      </div>
 
-      <label>Enter a phone #:</label>
-      <input type="tel" name="pnumber" value={formData.pnumber} onChange={handleChange} required />
+      <div>
+        <label>Enter a phone #:</label>
+        <input type="tel" name="pnumber" value={formData.pnumber} onChange={handleChange} required />
+      </div>
 
-      <label>Enter your message:</label>
-      <input type="text" name="mess" value={formData.mess} onChange={handleChange} required />
+      <div>
+        <label>Enter your message:</label>
+        <input type="text" name="mess" value={formData.mess} onChange={handleChange} required />
+      </div>
 
       <button type="submit">Submit</button>
     </form>
   );
 }
 
-// APP COMPONENT 
+
 function App() {
   const [background, setBackground] = useState("Home.jpg");
   const [showCountdownClock, setShowCountdownClock] = useState(false);
   const [showStartButton, setShowStartButton] = useState(true);
+  const [countdownTime, setCountdownTime] = useState(60); // Default to 60 seconds
 
-  function changeBackground() {
+  function changeBackground(timeInSeconds) {
     setBackground("Tunnel.jpg"); // Change background on form submission
     setShowCountdownClock(true);
     setShowStartButton(false); // Hide Start Button on submit
+    setCountdownTime(timeInSeconds); // Set countdown time
   }
 
   return (
@@ -83,13 +106,12 @@ function App() {
     }}>
       <h1>PROJECT TITLE!</h1>
 
-      {/* Hide StartButton after form submission */}
       {showStartButton && <StartButton onSubmit={changeBackground} hideButton={!showStartButton} />}
 
-      {/* Show CountdownClock after submission */}
-      {showCountdownClock && <CountdownClock />}
+      {showCountdownClock && <CountdownClock initialTime={countdownTime} />}
     </div>
   );
 }
+
 
 export default App;

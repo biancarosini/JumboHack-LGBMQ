@@ -1,59 +1,58 @@
-import React, {useState, useEffect} from 'react';
-const CountdownClock = () => {
-    const[timeLeft, timeRemaining] = useState(60);
+import React, { useState, useEffect } from 'react';
+
+const CountdownClock = ({ initialTime }) => {
+    const [timeLeft, setTimeLeft] = useState(initialTime);
 
     useEffect(() => {
-        const intervalId = setInterval (() => {
-        timeRemaining(prevTime => {
-            if (prevTime == 0) {
-                clearInterval(intervalId)
-                return 0;
-            }    
-            return prevTime -1;
-        });
-         },1000);
-         return () =>  clearInterval(intervalId); // Cleanup on component unmount
-        } , []) ;
+        if (timeLeft <= 0) return; // Stop countdown at 0
 
-        const angle = (timeLeft / 60) * 360;
+        const intervalId = setInterval(() => {
+            setTimeLeft(prevTime => {
+                if (prevTime === 0) {
+                    clearInterval(intervalId);
+                    return 0;
+                }
+                return prevTime - 1;
+            });
+        }, 1000);
 
-        return (
-          <div style={{ textAlign: 'center' }}>
+        return () => clearInterval(intervalId); // Cleanup on unmount
+    }, [timeLeft]);
+
+    // Rotate clockwise: 0° starts at top, 360° completes a full circle
+    const angle = (1 - timeLeft / initialTime) * 360;
+
+    return (
+        <div style={{ textAlign: 'left' }}>
             <div style={{ position: 'relative', width: '200px', height: '200px' }}>
-              {/* Clock Face Image */}
-              <img
-                src="clock-face-image.png" // Replace with the path to your clock face image
-                alt="Clock Face"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  borderRadius: '50%',
-                }}
-              />
-      
-              {/* Countdown Hand */}
-              <svg
-                width="200"
-                height="200"
-                viewBox="0 0 200 200"
-                style={{ position: 'absolute', top: 0, left: 0 }}
-              >
-                <line
-                  x1="100"
-                  y1="100"
-                  x2="100"
-                  y2="10"
-                  stroke="red"
-                  strokeWidth="4"
-                  transform={`rotate(${angle}, 100, 100)`}
-                  strokeLinecap="round"
+                <img
+                    src="clock-face-image.png" 
+                    alt="Clock Face"
+                    style={{
+                        width: '200px',
+                        height: '200px',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        borderRadius: '50%',
+                    }}
                 />
-              </svg>
+                <svg width="200" height="200" viewBox="0 0 200 200" style={{ position: 'absolute', top: 0, left: 0 }}>
+                    <line
+                        x1="100"
+                        y1="120"
+                        x2="100"
+                        y2="180"
+                        stroke="red"
+                        strokeWidth="4"
+                        transform={`rotate(${angle}, 100, 120)`}
+                        strokeLinecap="round"
+                    />
+                </svg>
             </div>
             <h2>{timeLeft} seconds remaining</h2>
-          </div>
-        )}
-export default CountdownClock;;
+        </div>
+    );
+};
+
+export default CountdownClock;
