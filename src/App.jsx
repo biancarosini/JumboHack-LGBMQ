@@ -10,11 +10,11 @@ function StartButton({ onSubmit, hideButton }) {
   }
 
   return (
-    <div>
+    <div id="startbutton">
       {!hideButton && (
         <button 
         onClick={handleClick} 
-        style={{ border: "none", background: "none", padding: 0, cursor: "pointer" }}
+        style={{ border: "none", background: "none", padding: 0, cursor: "pointer"}}
       >
           <img 
             src="EatMe.png" 
@@ -79,7 +79,7 @@ function FormComponent({ onSubmit, hideForm }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} id="form">
       <div>
         <label>Enter your goal:</label>
         <input type="text" name="goal" value={formData.goal} onChange={handleChange} required />
@@ -143,10 +143,10 @@ function App() {
   return (
     <div style={{
       backgroundImage: `url(${background})`,
-      backgroundSize: 'contain',
+      backgroundSize: 'cover',
       width: '100vw',
       height: '100vh',
-      backgroundPosition: "center",
+      backgroundPosition: "top",
       backgroundRepeat: 'no-repeat'
     }}>
       {showElements && (
@@ -154,7 +154,7 @@ function App() {
           <h1 style={{ color: "black" }}>GOaling Down the Rabbit Hole!</h1>
 
 
-          {showStartButton && <StartButton onSubmit={changeBackground} hideButton={!showStartButton} />}
+          {showStartButton && <StartButton onSubmit={changeBackground} hideButton={!showStartButton}/>}
           {showCountdownClock && <CountdownClock initialTime={countdownTime} onTimerEnd={handleCountdownEnd} />}
           {showRoseButton && <RoseButton onClick={handleRoseClick} hideButton={!showRoseButton} />}
         </>
